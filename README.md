@@ -1,5 +1,5 @@
 # CC-3S2
 
-Alumno: Omar Baldomero Vite Allca
+-Alumno: Omar Baldomero Vite Allca
 
-Código: 20200479B
+-Código: 20200479B
