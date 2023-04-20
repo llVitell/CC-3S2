@@ -8,9 +8,9 @@ public class CalculatorTest {
     private static Calculadora calculadora;
 
     @BeforeAll
-public static void init(){
-	calculadora = new Calculadora();
-}
+    public static void init() {
+        calculadora = new Calculadora();
+    }
 
     @Test
     public void whenCalculatorInitializedThenReturnTrue() {
@@ -20,26 +20,29 @@ public static void init(){
     }
 
     @Test
-public void whenAdditionTwoNumberThenReturnCorrectAnswer() {
-	Calculadora calculadora = new Calculadora();
-   	 
-	assertEquals( 5, calculadora.addition(2,3));
-}
+    public void whenAdditionTwoNumberThenReturnCorrectAnswer() {
+        Calculadora calculadora = new Calculadora();
 
-    // Requisito 3:
-    // La calculadora debe tener función de división.
-    @Test
-public void whenDivisionThenReturnCorrectAnswer() {
-	assertEquals(2, calculadora.division(8, 4));
-}
+        assertEquals(5, calculadora.addition(2, 3));
+    }
 
-    // Excepcion cuando alguien divide por cero
     @Test
-public void whenDivisionByZeroThenThrowException() {
-	Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-    	calculadora.division(5, 0);
-	});
-	assertEquals("No se puede divisor por  cero", exception.getMessage());
-}
+    public void whenDivisionThenReturnCorrectAnswer() {
+        assertEquals(2, calculadora.division(8, 4));
+    }
+
+    @Test
+    public void whenDivisionByZeroThenThrowException() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+            calculadora.division(5, 0);
+        });
+        assertEquals("No se puede divisor por  cero", exception.getMessage());
+    }
+
+    @Test
+    public void whenPotenciaTwoNumberThenReturnCorrectAnswer(){
+        Calculadora calculadora = new Calculadora();
+        assertEquals(8, calculadora.potencia(2, 3));
+    }
 
 }
