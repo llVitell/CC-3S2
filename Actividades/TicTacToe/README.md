@@ -1,140 +1,5 @@
 ## Proyecto Tictactoe
 
-###  Actividad Individual
-
-Descarga la actividad incompleta desde aquí:https://github.com/kapumota/Actividades/tree/main/Total/TictocToe 
-
-Inicia un repositorio llamado CC-3S2 y dentro una carpeta llamada Actividades. Dentro de esta carpeta abre una carpeta llamada `TicTacToe` y coloca todas tus respuestas.
-
-
-## El ejemplo con el juego Tic-Tac-Toe
-
-A continuación,  usamos el juego `TicTacToe` para ilustrar el proceso Scrum para el desarrollo de software. Nos enfocamos en la integración de prácticas de ingeniería de software en el proceso más que en la gestión del trabajo en equipo. 
-
-
-### Implementación e Ingeniería de Software 
-
-Antes de profundizar en los sprints individuales, proporcionamos una descripción general del código fuente completo de `TicTacToe`. 
-
-![](https://github.com/kapumota/Actividades/blob/main/Total/Imagenes/Sprints.png)
-
-
-Supongamos que la planificación inicial del proyecto TicTacToe ha determinado las siguientes historias de usuarios en el backlog products: 
-
-**Historia de usuario 1:** Como jugador, necesito un tablero vacío de 3 x 3 para comenzar un juego `TicTacToe`. 
-
-
-**Historia de usuario 2:**  Como jugador X, necesito colocar una ficha en un tablero tic-tac-toe para poder hacer un movimiento. 
-
-**Historia de usuario 3:**  Como jugador, necesito saber si el juego termina después de cada movimiento. 
-
-El sprint 1 tiene dos paquetes que muestran el incremento de producción y código de prueba desde la implementación de `AC1.1` a `AC 1.2-AC 1.3`. 
-
-Los dos paquetes del `sprint 2` presentan el código antes y después de la refactorización cuando se implementa inicialmente la funcionalidad de la segunda y tercera historia. 
-
-El primer paquete de `sprint 3` (`sprint 3_0`) es la implementación inicial de todas las historias. El segundo paquete, `sprint 3_1`, resulta de la refactorización del sprint `3_0`. Los cambios en el tercer paquete, `sprint3_2`, se ocupan de los informes de análisis de código estático. 
-
-El paquete `sprintX_autoplay` contiene el código fuente que permite a un jugador jugar contra la computadora. Se utiliza para discutir la evolución del software. 
-
-Ten en cuenta que el código está organizado de forma ilustrativa. Su estructura es ciertamente diferente a la de un proyecto de campo real, que generalmente utiliza una herramienta de control de versiones como git.
-
-
-## Sprint 1
-
-Considera la primera historia: como jugador, necesito un tablero vacío de 3 x 3 para comenzar un juego de `TicTacToe`. 
-
-Escribimos el primer criterio de aceptación de la siguiente manera : 
-
-```
-AC 1.1 Tablero vacío 
-Cuando 
-Entonces 
-Y
-```
-
-Sin embargo aquí  no se especifica completamente el requisito. ¿Se puede jugar el juego en un tablero más grande (por ejemplo, 5 x 5) usando una cuadrícula de 3 x 3? 
-
-Agregamos dos criterios de aceptación sobre los límites del tablero.
-
-```
-AC 1.2 Referencia de fila no válida
-Dado 
-Cuando
-Entonces 
-```
-```
-AC 1.3 Referencia de columna no válida
-Dado 
-Cuando 
-Entonces
-```
-
-### Características del sprint 1
-
-Código de producción: separación de la lógica empresarial y la interfaz de usuario 
-
-- Lógica empresarial: crear una clase board
-- Interfaz de usuario: crear una clase del GUI del tablero (o Console) 
-
-Separación de la lógica empresarial y la interfaz de usuario
-
-![](https://github.com/kapumota/Actividades/blob/main/Total/Imagenes/Design.png)
-
-Escribir código de prueba 
-
- - Crear pruebas a partir de los criterios de aceptación. 
-
-Para escribir una prueba, necesitamos tomar las siguientes decisiones: 
-
-- ¿Cuál es el tipo de datos de las celdas del tablero? 
- 
-- ¿Qué valor representa `empty`? 
-
--  ¿Cómo obtener una celda de tablero dada?
-
-. ¿Cuál es el tipo de datos de  ' turn de X'? 
-
-- ¿Cómo obtener el estado de `turn`? 
-
-
-Así, tenemos la siguiente prueba:
-
-```
-public class TestEmptyBoard {
-    private Board board = new Board ( );
-    // criterio de aceptación 1.1
-   @ Test
-    public void  testNewBoard() {
-         for (int row =0; row < 3; row ++) {
-            for (int column = 0; column < 3; column ++){
-	assertEquals(“ “, board.getCell(row, column), 0);
-	}
-         }
-         assertEquals(“ “, board.getTurn( ), ‘X’)
-      }
-}
-
-``` 
-El código de prueba anterior tiene varios errores de sintaxis porque el código de producción, es decir, la clase `Board` con los métodos `getCell` y `getTurn`, aún no está disponible. 
-
-Podemos escribir el siguiente código de producción para que la prueba pase. 
-
-```
-public class Board {
-     private int [ ][ ] grid;
-     private char turn = ‘X’;
-     public Board( ){
-             grid = new int [3 ][ 3];
-     } 
-
-public int getCell(int row, int column) {
-      return grid [row][column]; 
-    }
-  public char getTurn(){
-     return turn:
-  }
-}
-``` 
 #### Programación en pares
 
 El trabajo anterior podría realizarse a través de la programación en pares o con el estilo conductor-navegador: el `conductor` escribe el código en el teclado, mientras que el `navegador` piensa estratégicamente si el código debe ir (arquitectura, problemas, mejoras). 
@@ -215,7 +80,7 @@ public class Console {
     }
 }
 ```
-
+**Respuesta**: El código presentado se utiliza para mostrar el estado del tablero del juego Tic Tac Toe en la consola. La clase "TestBoardConsole" prueba la funcionalidad de la clase "Console" para mostrar un tablero vacío, mientras que la clase "Console" se encarga de imprimir el estado actual del tablero en la consola.
 
 Ahora consideramos `AC 1.2` y `AC 1.3` porque son similares. La decisión que debemos tomar es cómo representar una celda no válida. 
 
@@ -249,6 +114,8 @@ public int getCell(int row, int column){
 Ahora el código de trabajo ha implementado la primera historia de usuario. 
 
 **Pregunta:** ¿se necesita refactorización?
+
+**Respuesta:** Si bien la función es algo simple y pequeña hay pequeños cambios significativos que podrían mejorar la legibilidad del código, como explicar que significa el "return -1" 
 
 Según el DoD , debemos verificar si se cumple el objetivo de cobertura de la prueba y si el código fuente ha cumplido con las pautas de codificación. En efecto, cada declaración en `Board` ha sido compilada por al menos una de las tres pruebas. 
 
@@ -300,6 +167,8 @@ public class Board {
 }
 ``` 
 **Pregunta:** Realiza la cobertura de código. Explica tus respuestas.
+
+**Respuesta:** La cobertura de código es del 100% en este caso, lo que significa que se han ejecutado todas las líneas de código al menos una vez durante las pruebas.
 
 Revisa: https://www.jetbrains.com/help/idea/code-coverage.html 
 
