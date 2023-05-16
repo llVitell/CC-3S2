@@ -1,4 +1,99 @@
 # Pregunta 1
+### Código antes de LSP
+``` Java
+public abstract class Member {
+private final String nombre;
+public Member(String nombre) {
+    this.name = nombre;
+}
+    public abstract void joinTournament();
+    public abstract void organizeTournament();
+}
+```
+``` Java
+public class PremiumMember extends Member {
+public PremiumMember(String nombre) {
+super(nombre);
+}
+```
+``` Java
+public class FreeMember extends Member {
+public FreeMember(String name) {
+super(nombre);
+}
+public void joinTournament() {
+System.out.println(“.....");
+}
+//Este método rompe LSP
+public void organizeTournament() {
+System.out.println("...");
+}
+}
+```
+``` Java
+List<Member> miembros = List.of(
+PremiumMember("Abejita Azul"),
+new VipMember("Kaperucita Feliz"),
+new FreeMember("Inspectora Motita")
+);
+```
+### Código después de LSP
+``` Java
+public abstract class Member {
+private final String nombre;
+public Member(String nombre) {
+    this.name = nombre;
+}
+    public abstract void joinTournament();
+}
+```
+``` Java
+public class PremiumMember extends Member {
+public PremiumMember(String nombre) {
+super(nombre);
+}   
+    @Override
+    public void joinTournament(){
+        System.out.println("Ingresaste Correctamente")
+    }
+    public void organizeTournament(){
+        System.out.println("Organizando Torneo ....")
+    }
+}
+```
+``` Java
+public class VipMember extends Member {
+public VipMember(String nombre) {
+super(nombre);
+}
+    @Override
+    public void joinTournament(){
+        System.out.println("Ingresaste Correctamente")
+    }
+    public void organizeTournament(){
+        System.out.println("Organizando Torneo ....")
+    }
+}
+```
+``` Java
+public class FreeMember extends Member {
+public FreeMember(String name) {
+super(nombre);
+}   
+    @Override
+    public void joinTournament() {
+    System.out.println(“Ingresaste correctamente");
+    }
+}
+```
+``` Java
+List<Member> miembros = List.of(
+PremiumMember("Abejita Azul"),
+new VipMember("Kaperucita Feliz"),
+new FreeMember("Inspectora Motita")
+);
+// Los miembros "Abejita Azul" y "Kaperucita Feliz" tienen acceso al método "Organizar Torneo" sin embargo la "Inspectora Motita" solo puede acceder al método "Ingresar Torneo".
+```
 
 # Pregunta 2
 ## Requisito 1: Colocación de Piezas
