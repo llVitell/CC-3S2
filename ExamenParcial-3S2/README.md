@@ -326,29 +326,99 @@ test("Prueba por defecto no hay ganador", () => {
     });
 ```
 ### Prueba condición ganadora I
-En esta prueba, estamos definiendo que se espera una victoria del player 1 ya que formó una linea horizontal de tres.
+En esta prueba, estamos definiendo que se espera una victoria del player2 ya que formó una linea horizontal de tres.
 ``` TypeScript
-
+test("Prueba condición ganadora I", () => {
+      const board = new Board();
+      const players = [new Player("Red"), new Player("Blue")];
+      const mode = Mode.SIMPLE_GAME;
+      const game = new Game(board, players, mode);
+      const movements: [number, number, Letter][] = [
+        [1, 1, Letter.S], // PJ1
+        [0, 0, Letter.O], // PJ2
+        [1, 0, Letter.O], // PJ1
+        [0, 1, Letter.S], // PJ2
+        [1, 2, Letter.S], // PJ1
+        [0, 2, Letter.S], // PJ2
+      ];
+      movements.forEach((movement) => {
+        game.makeMove(movement[0], movement[1], movement[2]);
+      });
+      expect(game.getWinner()).toBe(players[1]);
+    });
 ```
 ### Prueba condición ganadora II
-En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea vertical de tres.
+En esta prueba, estamos definiendo que se espera una victoria del player2 ya que formó una linea vertical de tres.
 ``` TypeScript
-
+test("Prueba condición ganadora I", () => {
+      const board = new Board();
+      const players = [new Player("Red"), new Player("Blue")];
+      const mode = Mode.SIMPLE_GAME;
+      const game = new Game(board, players, mode);
+      const movements: [number, number, Letter][] = [
+        [1, 1, Letter.S], // PJ1
+        [0, 0, Letter.O], // PJ2
+        [1, 2, Letter.O], // PJ1
+        [1, 0, Letter.S], // PJ2
+        [2, 1, Letter.S], // PJ1
+        [2, 0, Letter.S], // PJ2
+      ];
+      movements.forEach((movement) => {
+        game.makeMove(movement[0], movement[1], movement[2]);
+      });
+      expect(game.getWinner()).toBe(players[1]);
+    });
 ```
 ### Prueba condición ganadora III
-En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea diagonal de tres.
+En esta prueba, estamos definiendo que se espera una victoria del player1 ya que formó una linea diagonal de tres.
 ``` TypeScript
-
+test("Prueba condición ganadora I", () => {
+      const board = new Board();
+      const players = [new Player("Red"), new Player("Blue")];
+      const mode = Mode.SIMPLE_GAME;
+      const game = new Game(board, players, mode);
+      const movements: [number, number, Letter][] = [
+        [0, 0, Letter.S], // PJ1
+        [0, 1, Letter.O], // PJ2
+        [1, 1, Letter.O], // PJ1
+        [1, 0, Letter.S], // PJ2
+        [2, 2, Letter.S], // PJ1
+        [2, 0, Letter.S], // PJ2
+      ];
+      movements.forEach((movement) => {
+        game.makeMove(movement[0], movement[1], movement[2]);
+      });
+      expect(game.getWinner()).toBe(players[0]);
+    });
 ```
 ### Prueba condición ganadora IV
 En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea diagonal invertida de tres.
 ``` TypeScript
-
+test("Prueba condición ganadora I", () => {
+      const board = new Board();
+      const players = [new Player("Red"), new Player("Blue")];
+      const mode = Mode.SIMPLE_GAME;
+      const game = new Game(board, players, mode);
+      const movements: [number, number, Letter][] = [
+        [2, 0, Letter.S], // PJ1
+        [0, 0, Letter.O], // PJ2
+        [1, 1, Letter.O], // PJ1
+        [1, 0, Letter.S], // PJ2
+        [0, 2, Letter.S], // PJ1
+        [2, 1, Letter.S], // PJ2
+      ];
+      movements.forEach((movement) => {
+        game.makeMove(movement[0], movement[1], movement[2]);
+      });
+      expect(game.getWinner()).toBe(players[0]);
+    });
 ```
 ## Requisito 3: Condiciones de empate
 ### Prueba manejo de una situación de empate
-En esta prueba, estamos definiendo que se espera un empate ya que no hay más movimientos por hacer y no hay ningún ganador.
+En esta prueba, estamos definiendo que se espera un error "DRAW" ya que no hay más movimientos por hacer y no hay ningún ganador.
 ``` TypeScript
-
+test("Prueba por defecto no hay ganador", () => {
+        expect(() => game.getWinner()).toThrow("DRAW");
+    });
 ```
 # Pregunta 4
