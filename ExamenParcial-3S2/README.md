@@ -54,7 +54,7 @@ En esta prueba, estamos definiendo que se espera O cuando se invoca el método g
         // Retorna O por que es el segundo en jugar
     }
 ```
-### Prueba x juega justo después de O
+### Prueba X juega justo después de O
 En esta prueba, estamos definiendo que se espera X cuando se invoca el método game.getTurn() ya que el tercer turno le corresponde a X.
 ``` Java
 @Test
@@ -156,66 +156,104 @@ En esta prueba, estamos definiendo que se espera un empate ya que no hay más mo
 # Pregunta 3
 ## Requisito 1: Colocación de Piezas
 ### Prueba límites del tablero I
-En esta prueba, estamos definiendo que se espera null cuando se invoca el método game.getCell(5, 2) ya que esta fila no es válida.
-``` Java
+En esta prueba, estamos definiendo que se espera un error cuando se invoca el método makeMove() ya que esta fila no es válida.
+``` TypeScript
+test("Prueba Límites del tablero I", () => {
+      const board = new Board(3, 3, true);
+      const player1 = new Player("Red");
 
+      expect(() => player1.makeMove(board, 2, 5, "S")).toThrow(
+        "Cell position out of bounds."
+      );
+    });
 ```
 ### Prueba límites del tablero II
-En esta prueba, estamos definiendo que se espera null cuando se invoca el método game.getCell(2, 5) ya que esta columna no es válida.
-``` Java
-    
+En esta prueba, estamos definiendo que se espera un error cuando se invoca el método makeMove() ya que esta columna no es válida.
+``` TypeScript
+test("Pruebas Límites del tablero II", () => {
+      const board = new Board(3, 3, true);
+      const player1 = new Player("Red");
+
+      expect(() => player1.makeMove(board, 5, 2, "S")).toThrow(
+        "Cell position out of bounds."
+      );
+    });
 ```
 ### Prueba lugar ocupado
-En esta prueba, estamos definiendo que se espera una X cuando se invoca el método game.getCell(1, 1) ya que previamente se realizó un movimiento en esta celda.
-``` Java
-
+En esta prueba, estamos definiendo que se espera un false cuando se invoca el método makeMove(board,1,1,"O") ya que previamente se realizó un movimiento en la celda (1,1).
+``` TypeScript
+test("Prueba lugar ocupado", () => {
+      const board = new Board(3, 3, true);
+      const player1 = new Player("Red");
+      player1.makeMove(board,1,1,"S");
+      expect(player1.makeMove(board, 1, 1, "O")).toBe(false);
+    });
 ```
 ## Requisito 2: Agregar soporte para 2 jugadores
 ### Prueba X juega primero
-En esta prueba, estamos definiendo que se espera X cuando se invoca el método game.getTurn() ya que X es el primer turno.
-``` Java
-
+En esta prueba, estamos definiendo que se espera true cuando se invoca el método makeMove(board,1,1,"X") ya que se efectuó el primer movimiento.
+``` TypeScript
+test("Prueba X juega primero", () => {
+      const board = new Board(3, 3, true);
+      const player1 = new Player("Red");
+      expect(player1.makeMove(board, 1, 1, "X")).toBe(true);
+    });
 ```
 ### Prueba O juega justo después de X
-En esta prueba, estamos definiendo que se espera O cuando se invoca el método game.getTurn() ya que a O le corresponde el segundo turno.
-``` Java
-
+En esta prueba, estamos definiendo que se espera true cuando se invoca el método makeMove(board,1,1,"O") por el player2 ya que se efectuó el segundo movimiento.
+``` TypeScript
+test("Prueba O juega justo después de X", () => {
+      const board = new Board(3, 3, true);
+      const player1 = new Player("Red");
+      const player2 = new Player("Blue");
+      player1.makeMove(board,0,0,"X");
+      expect(player2.makeMove(board, 1, 1, "O")).toBe(true);
+    });
 ```
-### Prueba x juega justo después de O
-En esta prueba, estamos definiendo que se espera X cuando se invoca el método game.getTurn() ya que el tercer turno le corresponde a X.
-``` Java
-
+### Prueba X juega justo después de O
+En esta prueba, estamos definiendo que se espera true cuando se invoca el método makeMove(board,1,1,"X") por el player1 ya que se efectuó el tercer turno.
+``` TypeScript
+test("Prueba X juega justo después de O", () => {
+      const board = new Board(3, 3, true);
+      const player1 = new Player("Red");
+      const player2 = new Player("Blue");
+      player1.makeMove(board,0,0,"X");
+      player2.makeMove(board,1,0,"O")
+      expect(player1.makeMove(board, 1, 1, "X")).toBe(true);
+    });
 ```
 ## Requisito 3: Agregar condiciones ganadoras
 ### Prueba por defecto no hay ganador
-En esta prueba, estamos definiendo que se espera tener el estado PLAYING ya que no hay ganadores.
-``` Java
-
+En esta prueba, estamos definiendo que se espera tener el error "playing" ya que no hay ganadores.
+``` TypeScript
+test("Prueba por defecto no hay ganador", () => {
+        expect(() => game.getWinner()).toThrow("Playing");
+    });
 ```
 ### Prueba condición ganadora I
-En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea horizontal de tres.
-``` Java
+En esta prueba, estamos definiendo que se espera una victoria del player 1 ya que formó una linea horizontal de tres.
+``` TypeScript
 
 ```
 ### Prueba condición ganadora II
 En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea vertical de tres.
-``` Java
+``` TypeScript
 
 ```
 ### Prueba condición ganadora III
 En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea diagonal de tres.
-``` Java
+``` TypeScript
 
 ```
 ### Prueba condición ganadora IV
 En esta prueba, estamos definiendo que se espera una victoria de la X ya que formó una linea diagonal invertida de tres.
-``` Java
+``` TypeScript
 
 ```
 ## Requisito 3: Condiciones de empate
 ### Prueba manejo de una situación de empate
 En esta prueba, estamos definiendo que se espera un empate ya que no hay más movimientos por hacer y no hay ningún ganador.
-``` Java
+``` TypeScript
 
 ```
 # Pregunta 4
