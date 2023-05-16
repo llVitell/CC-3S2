@@ -422,3 +422,4 @@ test("Prueba por defecto no hay ganador", () => {
     });
 ```
 # Pregunta 4
+Las pruebas efectivas y sistemáticas son un conjunto de técnicas y metodologías para verificar que el software está funcionando correctamente y sin errores. Estas pruebas incluyen no sólo la detección y corrección de errores, sino también la validación y verificación de los requisitos de software, la identificación de posibles problemas de seguridad y la evaluación de la calidad del software.
