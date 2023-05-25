@@ -41,13 +41,6 @@ Abejita, quien escribió este método y cree que debería funcionar, lo prueba e
 - Jessica dice que todo está OK. Pero desafortunadamente su código tiene un error off-by-one . ¿Qué expresión tiene el error? 
 - ¿Cuál podría ser el número de casos de prueba requeridos para probar esta función exhaustivamente?
 
-**Respuestas**
-
-- El resultado es `true`
-- El resultado es `false`
-- El error off-by-one es que el ciclo for debe terminar cuando i sea menor a 31, en lugar de estrictamente menor que 32.
-- El número de casos de prueba requeridos para probar esta función exhaustivamente es 2^32.
-
 **Ejercicio 2** 
 
 En la década de 1990, el vehículo de lanzamiento Ariane 5, diseñado y construido para la Agencia Espacial Europea, se autodestruyó 37 segundos después de su primer lanzamiento. El motivo fue un error del software de control que no se detectó. El software de guía del Ariane 5 se reutilizó del Ariane 4, que era un cohete más lento. Cuando el cálculo de la velocidad se convirtió de un número de coma flotante de 64 bits (el mismo que un número en TypeScript, aunque este software no se escribió en TypeScript) a un número entero con signo de 16 bits, desbordó el número entero pequeño y provocó una excepción. El controlador de excepciones se había deshabilitado por razones de eficiencia, por lo que el software de guía se bloqueó. Sin guía, el cohete también se estrelló. El costo de la falla fue de mil millones de dólares. 
@@ -58,13 +51,6 @@ En la década de 1990, el vehículo de lanzamiento Ariane 5, diseñado y constru
 - Probar todas las entradas posibles es la mejor solución a este problema. 
 - El software exhibe un comportamiento discontinuo, a diferencia de muchos sistemas diseñados físicamente. 
 - La verificación de tipos estáticos podría haber detectado este error.
-
-**Respuestas**
-
-- Aunque el software del Ariane 5 se diseñó con altos estándares de calidad y se probó rigurosamente, aún tenía un error que resultó en la pérdida del cohete.
-- Si es la mejor solución, pero no siempre es posible o práctico de realizar.
-- El error en el software del Ariane 5 se debió a un problema de desbordamiento que no se presentó en el diseño del Ariane 4. Este tipo de comportamiento discontinuo es difícil de detectar y puede llevar a errores inesperados.
-- Es correcto afirmar que la verificación de tipos estáticos pudo haber detectado este error, pero esto no garantiza la ausencia de errores. El error se debió a la reutilización del software del Ariane 4, que no se probó exhaustivamente.
 
 
 ### Pruebas sistemáticas 
@@ -85,13 +71,6 @@ Un conjunto de pruebas es correcto si:
 - Todos sus casos de prueba pasan cuando se ejecutan en una implementación legal 
 - Algunos casos de prueba pasan cuando se ejecutan en una implementación legal 
 
-**Respuestas**
-
-- Esto quiere decir que el conjunto de pruebas puede detectar errores en la implementación del software.
-- Esto quiere decir que si todos los casos de prueba pasan, pero la implementación tiene errores, es posible que no se haya cubierto adecuadamente el conjunto de casos de prueba.
-- Esto quiere decir que la implementación funciona correctamente en todos los casos.
-- Esto quiere decir que la implementación es adecuada para algunos usos previstos.
-
 **Ejercicio 4**
 
 Un conjunto de pruebas vacío no contiene casos de prueba. Suponiendo una especificación no trivial, un conjunto de pruebas vacío es: 
@@ -99,11 +78,6 @@ Un conjunto de pruebas vacío no contiene casos de prueba. Suponiendo una especi
 - Correcto 
 - Exhaustivo 
 - Pequeña
-
-**Respuestas**
-
-- Un conjunto de pruebas vacío no puede ser **exhaustivo** porque no cubre ningún caso. Además, no puede ser **pequeño** ya que no contiene ningún caso. Sin embargo, se puede considerar **correcto** ya que no debería haber errores en la implementación que no se cubran por el conjunto de pruebas vacío.
-
 
 ### Elección de casos de prueba mediante partición
 
@@ -193,40 +167,6 @@ Evalúe la calidad de cada una de las siguientes particiones candidatas. ¿Son l
 - Los subdominios están completos 
 - Los subdominios son correctos
 
-**Respuestas**
-
-- Los subdominios son disjuntos: Si, ya que un número no puede ser negativo y no negativo al mismo tiempo.
-- Los subdominios están completos: Si, ya que cubre todos los casos.
-- Los subdominios son correctos: No, ya que no cubre todos los casos, en particular no es posible cubrir el subdominio x < 0 ya que el parametro de entrada debe ser no negativo.
-
-```
-// particion: x es un cuadrado perfecto; x es > 0 pero no es un cuadrado perfecto
-
-```
-
-- Los subdominios son disjuntos 
-- Los subdominios están completos 
-- Los subdominios son correctos
-
-**Respuestas**
-- Los subdominios son disjuntos: Sí, ya que no hay ningún número que sea al mismo tiempo un cuadrado perfecto y un no cuadrado perfecto
-- Los subdominios están completos: Sí, ya que cubre todos los casos.
-- Los subdominios son correctos: Sí, los subdominios son correctos ya que cualquier número entero positivo es o bien un cuadrado perfecto o no lo es.
-
-```
-// particion: x=0, x=1, x=7, x=16
-``` 
-
-- Los subdominios son disjuntos 
-- Los subdominios están completos 
-- Los subdominios son correctos
-
-**Respuestas**
-- Los subdominios son disjuntos: Si, los subdominios son disjuntos. 
-- Los subdominios están completos: No, los subdominios no estan completos claramente faltan muchos valores posibles de x.
-- Los subdominios son correctos: No, ya que algunos de los subdominios no pueden ser cubiertos por un caso de prueba legal.
-
-
 **Ejercicio 6**
 
 Ahora considera esta especificación:
@@ -250,30 +190,6 @@ Evalúa cada una de las siguientes particiones candidatas para gcd.
 - Los subdominios son disjuntos 
 - Los subdominios están completos 
 - Los subdominios son correctos
-
-**Respuestas**
-
-- Los subdominios son disjuntos: Sí, ya que cada posible combinación de valores para x e y representa un subdominio distinto.
-- Los subdominios están completos: Sí, ya que podemos encontrar cualquier posible combinación de valores para x e y que cumpla con la restricción "x, y son distintos de 0".
-- Los subdominios son correctos: Sí, ya que este subdominio representa todas las posibles entradas válidas para la función gcd.
-
-```
-// particion: x es divisible por y; y es divisible por x;
-```
-
-- Los subdominios son disjuntos: Si, los subconjuntos de los divisores comunes más grandes de "x" e "y" son disjuntos, ya que cualquier divisor que se comparta entre los dos números debe ser un divisor de "y".
-- Los subdominios están completos: No, si "x" es 15 y "y" es 3, entonces el gcd es 3. Cuyos divisores son 1 y 3, faltaría el 2 para que sea completo.
-- Los subdominios son correctos: Si, cualquier subconjunto de los divisores comunes de "x" e "y" que incluya todos los factores primos comunes será correcto.
-
-
-```
-// particion: x e y son primeros relativos;
-```
-
-- Los subdominios son disjuntos: Si, no tienen factores primos comunes excepto 1, entonces los subdominios de su GCD serán disjuntos.
-- Los subdominios están completos: No, ya que el único divisor común de "x" e "y" es 1, que es el GCD de "x" e "y".
-- Los subdominios son correctos: Si, cualquier subdominio de los divisores comunes de "x" e "y" que contenga únicamente el número 1 como divisor común será considerado correcto.
-
 
 ### Incluir límites en la partición 
 
@@ -339,13 +255,6 @@ Para esta función:
 double winLossRatio(String winsAndLosses);
 ```
 ¿Cuáles son los valores límite apropiados para probar esta función?
-
-**Respuestas**
-
-- `winsAndLosses = ""` (cadena vacía)
-- `winsAndLosses = "W" o "L"` (cadena de un solo carácter)
-- `winsAndLosses = "WWWWWW", "LLLLL", ...` (cadena de 5 caracteres)
-
 
 ### Uso de varias particiones 
 
@@ -419,10 +328,6 @@ De entre las opciones a continuación, elija un subconjunto que serían particio
 - particion en a: `1, !=1`
 - particion en a: (donde "pequeño" encaja en long y "grande" no)
 
-**Respuestas**
-
-Una particion en a: a = 0, a = 1, a > 1, a < 0, a > Long.MAX_VALUE, a < Long.MIN_VALUE, 0 < a < 1, a != 0, a != 1, capturaría los mismos intereses 
-
 **Ejercicio 9**
 
 Considera nuevamente esta partición `a` en un desde arriba:
@@ -448,16 +353,6 @@ Supongamos que usamos estas tres particiones de a en su lugar:
 ```
 
 Si solo queremos cubrir cada subdominio de las tres particiones, ¿cuántos valores diferentes de a necesitaríamos?.
-
-**Respuestas**
-
-Evaluamos para cada caso
-
-- a = 0, un valor positivo y un valor negativo distintos, por lo tanto necesitamos un minimo de 3 valores diferentes de a (subdominio 1)
-- a = 1 y un valor distinto de 1, por lo tanto necesitamos 2 valores diferentes de a (subdominio 2)
-- a = un valor pequeño positivo, un valor pequeño negativo, un valor grande positivo y un valor grande negativo, por lo tanto necesitamos 4 valores diferentes de a (subdominio 3)
-
-En total necesitariamos 3 + 2 + 4 = 9 valores diferentes de a para cubrir cada subdominio de las tres particiones.
 
 **Ejercicio 10**
 
