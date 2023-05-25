@@ -80,46 +80,8 @@ public class Console {
     }
 }
 ```
-**Respuesta**: El código presentado se utiliza para mostrar el estado del tablero del juego Tic Tac Toe en la consola. La clase "TestBoardConsole" prueba la funcionalidad de la clase "Console" para mostrar un tablero vacío, mientras que la clase "Console" se encarga de imprimir el estado actual del tablero en la consola.
-
-Ahora consideramos `AC 1.2` y `AC 1.3` porque son similares. La decisión que debemos tomar es cómo representar una celda no válida. 
-
-El código existente ha usado `0` para representar una celda vacía. Sea `-1` denota una celda inválida. 
-
-Agregamos el siguiente código de prueba nuevo, donde un `3` denota una fila o columna no válida. 
-
-```
-// Criterio de aceptación 1.2 
-@ Test
-public void testInvalidRow(){
-   assertEqual(“ “, board.getCell(3, 0), -1);
-  }
-
- // criterio de aceptación 1.3
-@ Test
-public void testInvalidColumn(){
-   assertEqual(“ “, board.getCell(0, 3), -1);
-  }
-```
-Aunque estas pruebas no tienen ningún error de sintaxis, fallan porque `grid [3] [0]` y `grid [0] [3]` en la declaración de retorno de `getCell` están fuera de límite a lo siguiente:
-
-```
-public int getCell(int row, int column){
-       if(row >= 0 && row < 3 && column >= 0 && column < 3)
-           return grid[row][column]; 
-      else
-           return -1
-    }
-``` 
-Ahora el código de trabajo ha implementado la primera historia de usuario. 
 
 **Pregunta:** ¿se necesita refactorización?
-
-**Respuesta:** Si bien la función es algo simple y pequeña hay pequeños cambios significativos que podrían mejorar la legibilidad del código, como explicar que significa el "return -1" 
-
-Según el DoD , debemos verificar si se cumple el objetivo de cobertura de la prueba y si el código fuente ha cumplido con las pautas de codificación. En efecto, cada declaración en `Board` ha sido compilada por al menos una de las tres pruebas. 
-
-La revisión del código no encontró ningún problema con el estilo de codificación. Así se realiza el Sprint 1. 
 
 #### Cobertura de código 
 
@@ -167,8 +129,6 @@ public class Board {
 }
 ``` 
 **Pregunta:** Realiza la cobertura de código. Explica tus respuestas.
-
-**Respuesta:** La cobertura de código es del 100% en este caso, lo que significa que se han ejecutado todas las líneas de código al menos una vez durante las pruebas.
 
 Revisa: https://www.jetbrains.com/help/idea/code-coverage.html 
 
