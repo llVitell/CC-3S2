@@ -25,7 +25,10 @@ export class Player {
     if (currentValue !== "") {
       return false; // La celda ya está ocupada
     }
-    board.setCellValue(row, col, letter);
+    let points;
+    if (points !== 0) {
+      this.score.updateScore(points);
+    }
     return true;
   }
 }

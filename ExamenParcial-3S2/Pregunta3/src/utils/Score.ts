@@ -1,24 +1,45 @@
+/**
+ * @class Score
+ * @classdesc Esta clase se encarga de manejar el puntaje del juego.
+ */
 export class Score {
-  
-  private score: number;
+  private points: number;
 
+  /**
+   * Crea una instancia de la clase Score.
+   * @constructor
+   */
   constructor() {
-    this.score = 0;
+    this.points = 0;
   }
 
-  public getScore(): number {
-    return this.score;
-  }
-
-  public updateScore(result: string): void {
-    if (result !== 'S' && result !== 'O' && result !== 'SS' && result !== 'OO') {
-      throw new Error('Invalid result provided.');
+  /**
+   * Añade puntos al puntaje actual.
+   * @param {number} points Los puntos a añadir.
+   * @throws {Error} Si los puntos son negativos o no son un número entero.
+   * @returns {void} No retorna nada.
+   */
+  public addPoints(points: number): void {
+    if (!Number.isInteger(points) || points < 0) {
+      throw new Error("Points must be a non-negative integer.");
     }
-    if (result === 'S' || result === 'O') {
-      this.score++;
-    } else if (result === 'SS' || result === 'OO') {
-      this.score += 2;
-    }
+    this.points += points;
   }
 
+  /**
+   * Establece el puntaje actual.
+   * @param {number} points El puntaje a establecer.
+   * @returns {void} No retorna nada.
+   */
+  public setPoints(points: number): void {
+    this.points = points;
+  }
+
+  /**
+   * Obtiene el puntaje actual.
+   * @returns {number} El puntaje actual.
+   */
+  public getPoints(): number {
+    return this.points;
+  }
 }
