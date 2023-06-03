@@ -67,6 +67,9 @@ Para cada una de estas llamadas, se cumple la precondición.
 
 ## Respuesta
 
+El carácter '@' está presente en el string ```vowels```. Luego, el carácter de entrada ```letter``` se convierte a minúscula utilizando ```character.toLowerCase(letter)```, y luego se verifica si está presente en la cadena de vocales utilizando ```vowels.indexOf(ch) >= 0```. Por lo tanto devuelve ```true```.
+
+
 # Pregunta 4
 Considera ```int [ ] genRandomIntegers(int count)``` que devuelve una lista de enteros aleatorios. 
 Su precondición y postcondición son ```count >0``` y ```list.length = count```, respectivamente (```list``` denota el valor devuelto). 
@@ -81,6 +84,10 @@ for (int i = 0; i < count; i ++){
 ¿Qué sucede si modificamos ```genRandomIntegers```. mantenemos la precondición pero cambiamos la postcondición a ```list.length=count-1```?.
 
 ## Respuesta
+
+Se espera que la longitud de la lista generada por ```genRandomIntegers()``` sea igual a ```count```, ya que se realiza un bucle for desde 0 hasta count-1. Sin embargo, si modificamos la postcondición de la función para que ```list.length``` sea igual a count-1, la longitud de la lista será menor de lo esperado.
+
+Por lo tanto, cuando el código intente acceder a ```list[i]``` para i igual a count-1, se producirá un error.
 
 # Pregunta 5
 
@@ -110,5 +117,4 @@ public int getCell(int row, int column){
 ¿Cómo cambia la precondición y la postcondición en el ejemplo anterior?.
 
 ## Respuesta
-
-
+La postcondición original establecía que la función debería devolver 0, pero la implementación actual devuelve -1 cuando los valores de row y column no cumplen con la precondición. Por lo tanto, la nueva postcondición sería return grid or -1 y la precondición seguiría siendo la misma.
