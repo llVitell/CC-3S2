@@ -10,11 +10,33 @@ public class Basket {
     private Map<Product, Integer> basket = new HashMap< >();
 
     public void add(Product product, int qtyToAdd) {
+    	assert product != null : "...";
+    	assert qtyToAdd > 0 : "...";
+    	  
+    	BigDecimal oldTotalValue = totalValue;
+        if (basket.containsKey(product) {
+    	    int currentQty = basket.get(product);
+    	    basket.put(product, currentQty + qtyToAdd);
+	    } else {
+	        basket.put(product, qtyToAdd);
+	    }
+	
+	    totalValue += qtyToAdd;
+    	
+    	assert basket.containsKey(product) : "...";
+    	assert totalValue.compareTo(oldTotalValue) == 1 : "...";
+    	assert invariant() : "...";
+     }
 
-    }
-    public void remove(Product product) {
- 
-    }
+     public void remove(Product product) {
+    	assert product != null : "...";
+    	assert basket.containsKey(product) : "...";
+
+        basket.remove(product);
+        
+    	assert !basket.containsKey(product) : "...";
+    	assert invariant() : "...";
+     }
     private boolean invariant() {
         return totalValue.compareTo(BigDecimal.ZERO) >= 0;
     }
